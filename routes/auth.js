@@ -3,7 +3,8 @@ var router = express.Router();
 const pool = require("../config/db");
 const validator = require("../validators/index");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { secret } = require("../config/jwt");
 
 
 // REGISTER USER
@@ -74,7 +75,7 @@ router.post("/login", async (req, res) => {
         id: user.id,
         username: user.username,
       },
-      "strongsecret",
+      secret,
       {
         expiresIn: "3h",
       }
