@@ -1,9 +1,9 @@
 var express = require('express');
 const { db } = require('../config');
-const Pusher = require('pusher');
+
 const { use } = require('.');
 var router = express.Router();
-
+const Pusher = require('pusher');
 const pusher = new Pusher({
   appId: "1488927",
   key: "5ffd502396a114a03464",
@@ -19,13 +19,15 @@ router.post('/', async function(req, res, next) {
 
     const result = await db.query('INSERT INTO games (token, status, player_1_id) VALUES ($1, $2,$3) RETURNING *', [token, 'wait', user.id]);
 
-    pusher.trigger(`game-${token}`, 'room-created', { token, player_1_id: user.id, player_2_id: null });
+    pusher.trigger(`game-${token}`, 'room-created', 
+       {
+        data : {token, player_1_id: user.id, player_2_id: null }
+       }
+      );
     res.status(200).json({
       success: true,
       message: 'Room created successfully',
-      data: {
-        result: result.rows
-      }
+      data: result.rows[0]
     });
   } catch (error) {
     console.error("Database query error:", error);
@@ -51,14 +53,13 @@ router.put('/:token/join', async function(req, res, next) {
       });
     }
     
-    pusher.trigger(`game-${token}`, 'room-joined', { token, player_1_id: result.rows[0].player_1_id, player_2_id: user.id });
+    pusher.trigger(`game-${token}`, 'room-join', {
+      data:{ token, player_1_id: result.rows[0].player_1_id, player_2_id: user.id }
+    });
     res.status(200).json({
       success: true,
       message: 'Joined room successfully',
-      data: {
-        roomId: token,
-        opponent: user.username
-      }
+      data:{ token, player_1_id: result.rows[0].player_1_id, player_2_id: user.id }
     });
   } catch (error) {
     console.error("Database query error:", error);
@@ -82,7 +83,7 @@ router.post('/:token/start', async function(req, res, next) {
     await db.query('INSERT INTO history (game_id,player_id) VALUES ($1,$2)', [result.rows[0].id, result.rows[0].player_1_id]);
     await db.query('INSERT INTO history (game_id,player_id) VALUES ($1,$2)', [result.rows[0].id, result.rows[0].player_2_id]);
 
-    pusher.trigger(`game-${token}`, 'room-started', { roomId: result.rows[0].id, status: result.rows[0].status });
+    pusher.trigger(`game-${token}`, 'room-start', { roomId: result.rows[0].id, status: result.rows[0].status });
 
     res.status(200).json({
       success: true,
@@ -160,18 +161,15 @@ router.put('/:token/stop', async function(req, res, next) {
       return acc;
     }, []);
     
-    console.log(rounds);
-    
 
-    console.log(rounds)
-
-    console.log(details.rows)
     if (details.rowCount === 0) {
       return res.status(404).json({
         success: false,
         message: 'Matches not found'
       });
     }
+
+    pusher.trigger(`game-${token}`, 'room-end', { status:'finish' });
     res.status(200).json({
       success: true,
       message: 'Room finished successfully',
