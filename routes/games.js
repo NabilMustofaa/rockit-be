@@ -3,14 +3,8 @@ const { db } = require('../config');
 
 const { use } = require('.');
 var router = express.Router();
-const Pusher = require('pusher');
-const pusher = new Pusher({
-  appId: "1488927",
-  key: "5ffd502396a114a03464",
-  secret: "8a39f9a1fc77e2abf8a6",
-  cluster: "ap1",
-  useTLS: true
-});
+
+const pusher = require('../config/pusher');
 
 router.post('/', async function(req, res, next) {
   try {
