@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { secret } = require("../config/jwt");
 
-exports.register = async (req, res) => {
+const register = async (req, res) => {
   const { body } = req;
   const result = validator.registerUser.validate(body);
   const { error } = result;
@@ -39,7 +39,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { body } = req;
   const result = validator.loginUser.validate(body);
   const { error } = result;
@@ -92,4 +92,10 @@ exports.login = async (req, res) => {
     console.error("Error logging in user:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
+};
+
+
+module.exports = {
+  register,
+  login
 };

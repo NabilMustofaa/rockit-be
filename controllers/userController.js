@@ -5,8 +5,8 @@ const getUserInfo = async (req, res) => {
   try {
     const { rows } = await pool.query("SELECT id, username FROM users WHERE id = $1", [
       req.user.id,
+    
     ]);
-
     res.status(200).json(rows[0]);
   } catch (error) {
     console.error("Error fetching user info:", error);
