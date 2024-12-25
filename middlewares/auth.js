@@ -3,6 +3,7 @@ const { db } = require('../config');
 const { secret } = require('../config/jwt');
 
 const verifyToken = async (req, res, next) => {
+  console.log('Authorization Header:', req.headers.authorization);
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
