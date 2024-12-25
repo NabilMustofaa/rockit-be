@@ -1,5 +1,6 @@
 const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
+const { message } = require("../validators/registerUser.validator");
 
 const getUserInfo = async (req, res) => {
   try {
@@ -29,7 +30,13 @@ const getLeaderboard = async (req, res) => {
       win_count: user.win_count,
     }));
 
-    res.status(200).json({ leaderboard });
+    top5 = leaderboard.slice(0, 5);
+    userRank = leaderboard.find((user) => user.id === req.user.id);
+
+    res.status(200).json({ 
+      message : "Leaderboard fetches successfully",
+      data : { leaderboard: top5, user_rank: userRank }
+     });
   } catch (error) {
     console.error("Error fetching leaderboard:", error);
     res.status(500).json({ message: "Internal Server Error" });
