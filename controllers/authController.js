@@ -26,7 +26,7 @@ const register = async (req, res) => {
 
     res.status(201).json({
       message: "User registered successfully",
-      user: queryResult.rows[0],
+      data: queryResult.rows[0],
     });
   } catch (error) {
     console.error("Error creating user:", error.message);
@@ -77,16 +77,17 @@ const login = async (req, res) => {
         username: user.username,
       },
       secret,
-      { expiresIn: "3h" }
+      { expiresIn }
     );
     console.log(token + "token", secret );
 
     res.status(200).json({
       message: "Login successful",
       access_token: token,
-      user: {
+      data: {
         id: user.id,
         username: user.username,
+        token: token,
       },
     });
   } catch (error) {
