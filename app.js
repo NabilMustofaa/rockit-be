@@ -8,9 +8,9 @@ const config = require('./config');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/userRoutes');
-const gamesRouter = require('./routes/games');
+const gamesRouter = require('./routes/gameRoutes');
 const authRouter = require('./routes/authRoutes');
-const matchesRouter = require('./routes/matches');
+const matchesRouter = require('./routes/matchRoutes');
 const authMiddleware = require('./middlewares/auth');
 
 const app = express();

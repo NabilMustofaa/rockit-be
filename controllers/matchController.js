@@ -1,37 +1,29 @@
-var express = require('express');
 const { db } = require('../config');
-var router = express.Router();
 const pusher = require('../config/pusher');
 
-
-router.get('/:token', async function(req, res, next) {
+const endRound = async (req, res) => {
   const { token } = req.params;
-  pusher.trigger(`game-${token}`, 'round-end', 
-    {
-     data : {
-      status : "finish"
-     }
+  pusher.trigger(`game-${token}`, 'round-end', {
+    data: {
+      status: "finish"
     }
-   );
-})
+  });
+};
 
-
-router.post('/:token/:round', async function(req, res, next) {
-  const { token,round } = req.params;
+const insertMove = async (req, res) => {
+  const { token, round } = req.params;
   const { move } = req.body;
-  const {user} = req
+  const { user } = req;
 
   try {
     const gameId = await db.query('SELECT id FROM games WHERE token = $1', [token]);
     await db.query('INSERT INTO matches (game_id, player_id, round, move) VALUES ($1, $2, $3, $4) RETURNING *', [gameId.rows[0].id, user.id, round, move]);
 
     const matches = await db.query('SELECT * FROM matches WHERE game_id IN (SELECT id FROM games WHERE token = $2) AND round = $1', [round, token]);
-    pusher.trigger(`game-${token}`, 'round-move', 
-      {
-       data : matches.rows
-      }
-     );
-    
+    pusher.trigger(`game-${token}`, 'round-move', {
+      data: matches.rows
+    });
+
     res.status(200).json({
       success: true,
       message: 'User move inserted successfully',
@@ -46,10 +38,10 @@ router.post('/:token/:round', async function(req, res, next) {
       error: err.message
     });
   }
-});
+};
 
-router.get('/:token/:round', async function(req, res, next) {
-  const { token,round } = req.params;
+const getRound = async (req, res) => {
+  const { token, round } = req.params;
 
   try {
     const result = await db.query('SELECT * FROM matches WHERE game_id IN (SELECT id FROM games WHERE token = $2) AND round = $1', [round, token]);
@@ -73,7 +65,11 @@ router.get('/:token/:round', async function(req, res, next) {
       error: err.message
     });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  endRound,
+  insertMove,
+  getRound
+};
 
