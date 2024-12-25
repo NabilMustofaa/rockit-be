@@ -25,9 +25,9 @@ app.use(cors())
 app.use("/", indexRouter);
 
 app.use("/auth", authRouter); 
-app.use("/users", authMiddleware, usersRouter); 
-app.use('/games',authMiddleware, gamesRouter, );
-app.use('/matches', authMiddleware, matchesRouter,);
+app.use("/users",authMiddleware, usersRouter); 
+app.use('/games',authMiddleware, gamesRouter);
+app.use('/matches',authMiddleware, matchesRouter,);
 
 app.listen(config.port, () => {
   console.log(`Server running on http://localhost:${config.port}`);

@@ -2,9 +2,9 @@ const pool = require("../config/db");
 const validator = require("../validators/index");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { secret } = require("../config/jwt");
+const { secret, expiresIn } = require("../config/jwt");
 
-exports.register = async (req, res) => {
+const register = async (req, res) => {
   const { body } = req;
   const result = validator.registerUser.validate(body);
   const { error } = result;
@@ -39,7 +39,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { body } = req;
   const result = validator.loginUser.validate(body);
   const { error } = result;
@@ -70,7 +70,7 @@ exports.login = async (req, res) => {
         message: "Invalid username or PIN",
       });
     }
-
+    console.log(secret);
     const token = jwt.sign(
       {
         id: user.id,
@@ -79,6 +79,7 @@ exports.login = async (req, res) => {
       secret,
       { expiresIn: "3h" }
     );
+    console.log(token + "token", secret );
 
     res.status(200).json({
       message: "Login successful",
@@ -92,4 +93,10 @@ exports.login = async (req, res) => {
     console.error("Error logging in user:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
+};
+
+
+module.exports = {
+  register,
+  login
 };

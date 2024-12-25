@@ -3,6 +3,7 @@ const { db } = require('../config');
 const { secret } = require('../config/jwt');
 
 const verifyToken = async (req, res, next) => {
+  console.log('Authorization Header:', req.headers.authorization);
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
@@ -13,8 +14,9 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, secret);
 
+    const decoded = jwt.verify(token, secret);
+    console.log('Decoded Token:', decoded);
     const result = await db.query(
       'SELECT * FROM users WHERE id = $1',
       [decoded.id]
