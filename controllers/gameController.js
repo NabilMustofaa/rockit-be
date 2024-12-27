@@ -236,6 +236,11 @@ const stopGame = async (req, res) => {
       [winner, game.id]
     );
 
+    await pool.query(
+      'UPDATE users SET win_count = win_count + 1 WHERE id = $1',
+      [winner]
+    );
+
     await pusher.trigger(`game-${token}`, 'room-end', {
       status: 'finish'
     });
