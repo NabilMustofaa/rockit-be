@@ -5,7 +5,7 @@ const { validator } = require("../validators/registerUser.validator");
 const getUserInfo = async (req, res) => {
   try {
     const { rows } = await pool.query(
-      "SELECT username, win_count FROM users WHERE id = $1",
+      "SELECT id, username, win_count FROM users WHERE id = $1",
       [req.user.id]
     );
 
