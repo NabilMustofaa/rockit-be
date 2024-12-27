@@ -97,7 +97,9 @@ const joinRoom = async (req, res) => {
       data: {
         token,
         player_1_id: game.player_1_id,
-        player_2_id: user.id
+        player_2_id: user.id,
+        player_1_username,
+        player_2_username
       }
     });
   } catch (error) {
