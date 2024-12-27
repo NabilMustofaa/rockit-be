@@ -90,8 +90,13 @@ const insertMove = async (req, res) => {
 
       // Calculate result if both moves are present
       if (match.player_1_move && match.player_2_move) {
+        
         let result;
-        if (match.player_1_move === match.player_2_move) {
+        if (match.player_1_move === "None") {
+          result = "Player 2";
+        } else if (match.player_2_move === "None") {
+          result = "Player 1"; 
+        } else if (match.player_1_move === match.player_2_move) {
           result = "Draw";
         } else if (
           (match.player_1_move === "Rock" && match.player_2_move === "Scissors") ||

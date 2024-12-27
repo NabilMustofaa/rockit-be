@@ -192,6 +192,8 @@ const stopGame = async (req, res) => {
     );
 
     const getRoundWinner = (move1, move2) => {
+      if (move1 === "None") return "Player 2";
+      if (move2 === "None") return "Player 1";
       if (move1 === move2) return "Draw";
       const winningMoves = {
         Rock: "Scissors",
