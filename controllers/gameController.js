@@ -73,12 +73,21 @@ const joinRoom = async (req, res) => {
     );
 
     const game = result.rows[0];
+    
+
+    //get username
+    const userQuery = await pool.query('SELECT id, username FROM users WHERE id = $1 OR id = $2', [game.player_1_id, game.player_2_id]);
+
+    const player_1_username = userQuery.rows.find(user => user.id === game.player_1_id).username;
+    const player_2_username = userQuery.rows.find(user => user.id === game.player_2_id).username;
 
     await pusher.trigger(`game-${token}`, 'room-join', {
       data: {
         token,
         player_1_id: game.player_1_id,
-        player_2_id: user.id
+        player_2_id: user.id,
+        player_1_username,
+        player_2_username
       }
     });
 
