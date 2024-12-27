@@ -247,6 +247,23 @@ const stopGame = async (req, res) => {
       [winner, game.id]
     );
 
+    const winnerId =
+    winner === "Player 1" ? game.player_1_id :
+    winner === "Player 2" ? game.player_2_id :
+    null; 
+
+  await pool.query(
+    'UPDATE history SET winner = $1, finish_at = NOW() WHERE game_id = $2',
+    [winner, game.id]
+  );
+
+  if (winnerId) {
+    await pool.query(
+      'UPDATE users SET win_count = win_count + 1 WHERE id = $1',
+      [winnerId]
+    );
+  }
+
     await pool.query(
       'UPDATE users SET win_count = win_count + 1 WHERE id = $1',
       [winner]
