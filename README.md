@@ -8,7 +8,7 @@ Rockit Backend is a Node.js application designed for managing multiplayer game r
 
 - **User Management**:
   - Create and manage user profiles.
-  - Secure authentication.
+  - Secure authentication with JWT.
 
 - **Game Room Management**:
   - Create and join game rooms.
@@ -60,6 +60,10 @@ PUSHER_APP_ID=<your-pusher-app-id>
 PUSHER_KEY=<your-pusher-key>
 PUSHER_SECRET=<your-pusher-secret>
 PUSHER_CLUSTER=<your-pusher-cluster>
+
+# JWT configuration
+JWT_SECRET=<your-jwt-secret>
+JWT_EXPIRATION=1h
 ```
 
 ### 4. Set Up Database
