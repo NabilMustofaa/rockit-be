@@ -1,6 +1,6 @@
 const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
-const { message } = require("../validators/registerUser.validator");
+const { validator } = require("../validators/registerUser.validator");
 
 const getUserInfo = async (req, res) => {
   try {
