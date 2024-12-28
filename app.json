@@ -1,5 +1,13 @@
 {
   "plugins": [
-    "expo-build-properties"
+    "expo-build-properties",
+    {
+      "android": {
+        "usesCleartextTraffic": true
+      },
+      "ios": {
+        "flipper": true
+      }
+    }
   ]
 }
