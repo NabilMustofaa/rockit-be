@@ -109,7 +109,7 @@ CREATE TABLE history (
 ```
 
 ### 3. Project Structure
-
+```
 ROCKIT-BE
 ├── bin
 ├── config
@@ -144,6 +144,7 @@ ROCKIT-BE
 ├── package.json
 ├── README.md
 └── Rock-It.postman_collection.json
+```
 
 ---
 
