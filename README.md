@@ -1,6 +1,6 @@
 # Rockit Backend
 
-Rockit Backend is a Node.js application designed for managing multiplayer game rooms. It includes user authentication, room creation and joining, game state management, win tracking, and real-time notifications via Pusher.
+Rockit Backend is a Node.js application designed for managing multiplayer game rooms. It includes user authentication, room creation and joining, game state management, win tracking, and real-time online game via Pusher.
 
 ---
 
@@ -108,6 +108,43 @@ CREATE TABLE history (
 );
 ```
 
+### 3. Project Structure
+
+ROCKIT-BE
+├── bin
+├── config
+│   ├── db.js
+│   ├── index.js
+│   ├── jwt.js
+│   └── pusher.js
+├── controllers
+│   ├── authController.js
+│   ├── gameController.js
+│   ├── matchController.js
+│   └── userController.js
+├── middlewares
+│   ├── auth.js
+│   └── validation.js
+├── node_modules
+├── public
+├── routes
+│   ├── authRoutes.js
+│   ├── gameRoutes.js
+│   ├── index.js
+│   ├── matchRoutes.js
+│   └── userRoutes.js
+├── validators
+│   ├── index.js
+│   ├── loginUser.validator.js
+│   └── registerUser.validator.js
+├── .env.example
+├── .gitignore
+├── app.js
+├── package-lock.json
+├── package.json
+├── README.md
+└── Rock-It.postman_collection.json
+
 ---
 
 ## Usage
@@ -117,7 +154,7 @@ CREATE TABLE history (
 To start the server, run:
 
 ```bash
-npm start
+npm run start
 ```
 
 ## Real-time Notifications
@@ -177,12 +214,6 @@ npm test
 ### Postman Collection
 
 Import the provided Postman collection (`rockit-be.postman_collection.json`) to test the API.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ---
 

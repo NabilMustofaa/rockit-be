@@ -1,0 +1,936 @@
+{
+	"info": {
+		"_postman_id": "7e10dad5-b728-4b7e-b6ac-f1c3088990a0",
+		"name": "Rock-It",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30581242",
+		"_collection_link": "https://rockit-api.postman.co/workspace/RockIt-API-Workspace~2d92cae6-ac17-4377-837d-a8872ae19e26/collection/30581242-7e10dad5-b728-4b7e-b6ac-f1c3088990a0?action=share&source=collection_link&creator=30581242"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"talitaa\",\n    \"pin\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://13.239.139.158/auth/register"
+					},
+					"response": [
+						{
+							"name": "Username Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"talita\",\n    \"pin\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/auth/register"
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-tTgZ4hqq4TZrQ1/BjlrxF3WRdrI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 02:11:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Username already exists.\"\n}"
+						},
+						{
+							"name": "Register Succeed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"player\",\n    \"pin\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/auth/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "162"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a2-gIqSOMGdcvYcfXdQPu/kQPXAAuA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Dec 2024 13:52:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"id\": 67,\n        \"username\": \"player\",\n        \"pin\": \"$2b$10$gbdbOdjg1Wq8Z0lBcEjsAOYMj/FvOxg/neAYu6k7YluP5f97jqCU.\",\n        \"win_count\": 0\n    }\n}"
+						},
+						{
+							"name": "Register USername > 8",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"playerNamaPanjang\",\n    \"pin\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/auth/register"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "246"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f6-7jvmoha9jZQDeNK95mp5PSL+/Ng\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 27 Dec 2024 13:55:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid Request\",\n    \"data\": [\n        {\n            \"message\": \"\\\"username\\\" length must be less than or equal to 8 characters long\",\n            \"path\": [\n                \"username\"\n            ],\n            \"type\": \"string.max\",\n            \"context\": {\n                \"limit\": 8,\n                \"value\": \"playerNamaPanjang\",\n                \"label\": \"username\",\n                \"key\": \"username\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist;",
+									"  pm.expect(responseData.access_token).to.exist;",
+									"  pm.expect(responseData.data).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Data object should exist and have specific properties\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.data).to.exist;",
+									"  pm.expect(responseData.data).to.have.property('id');",
+									"  pm.expect(responseData.data).to.have.property('username');",
+									"  pm.expect(responseData.data).to.have.property('pin');",
+									"  pm.expect(responseData.data).to.have.property('win_count');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Username is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.data.username).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Username should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Pin is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.data.pin).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Pin should not be empty\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"naura\",\n    \"pin\": \"123456\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://13.239.139.158/auth/login"
+					},
+					"response": [
+						{
+							"name": "Succeed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"player\",\n    \"pin\": \"123456\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/auth/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "426"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1aa-j9/oB1weuo13l9okN/NVSrP228o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Dec 2024 05:25:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login successful\",\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjcsInVzZXJuYW1lIjoicGxheWVyIiwiaWF0IjoxNzM1MzYzNTAzLCJleHAiOjE3MzUzNzQzMDN9.rMMinkTllwcWKJFJ3bcL45u3BZIgREkxWbONcUffhH4\",\n    \"data\": {\n        \"id\": 67,\n        \"username\": \"player\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjcsInVzZXJuYW1lIjoicGxheWVyIiwiaWF0IjoxNzM1MzYzNTAzLCJleHAiOjE3MzUzNzQzMDN9.rMMinkTllwcWKJFJ3bcL45u3BZIgREkxWbONcUffhH4\"\n    }\n}"
+						},
+						{
+							"name": "Wrong Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"user9\",\n    \"pin\": \"123455\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/auth/login"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-E8aULiQliSBrJ6thaspppzn9wnM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 08:29:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"invalid username or PIN\"\n}"
+						},
+						{
+							"name": "Unregistered Username",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"naura\",\n    \"pin\": \"123456\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/auth/login"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-E8aULiQliSBrJ6thaspppzn9wnM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 08:30:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"invalid username or PIN\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Leaderboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Leaderboard array should exist and be an array\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.leaderboard).to.be.an('array').and.to.not.be.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Each leaderboard object contains non-negative integer values for rank, id, and win_count\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.leaderboard).to.be.an('array');",
+									"    ",
+									"    responseData.leaderboard.forEach(function (leaderboardObj) {",
+									"        pm.expect(leaderboardObj.rank).to.be.a('number').and.to.be.at.least(0);",
+									"        pm.expect(leaderboardObj.id).to.be.a('number').and.to.be.at.least(0);",
+									"        pm.expect(leaderboardObj.win_count).to.be.a('number').and.to.be.at.least(0);",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Username field must be a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  responseData.leaderboard.forEach(function(user) {",
+									"    pm.expect(user.username).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Username should not be empty\");",
+									"  });",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoibmF1cmEiLCJpYXQiOjE3MzUwOTUyMjksImV4cCI6MTczNTEwNjAyOX0.TUacB3q93f-g8dK5weD-WkvoQoss-faG44tsgZip-8k",
+								"type": "text"
+							}
+						],
+						"url": "http://13.239.139.158/users/leaderboard"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "matches",
+			"item": [
+				{
+					"name": "Post Move",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"move\":\"paper\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://13.239.139.158/matches/{{game_token}}/1"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"round\":4,\r\n    \"move\":\"paper\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/matches/6n844l"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "141"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8d-xCpmyRsCCjklFcxRV843/VQ2G+g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 04:05:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User move inserted successfully\",\n    \"data\": {\n        \"result\": [\n            {\n                \"id\": 9,\n                \"game_id\": 12,\n                \"player_id\": 5,\n                \"round\": 4,\n                \"move\": \"paper\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Round Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://13.239.139.158/matches/{{game_token}}/2"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "http://13.239.139.158/matches/6n844l/2"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "200"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c8-3CVVZaeDtcXh/3N0mieuiX1QWjk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 04:06:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Round retrieved successfully\",\n    \"data\": {\n        \"round\": [\n            {\n                \"id\": 5,\n                \"game_id\": 12,\n                \"player_id\": 1,\n                \"round\": 2,\n                \"move\": \"rock\"\n            },\n            {\n                \"id\": 6,\n                \"game_id\": 12,\n                \"player_id\": 5,\n                \"round\": 2,\n                \"move\": \"scissors\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "games",
+			"item": [
+				{
+					"name": "Req TOKEN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Save token to game token env\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"game_token\", jsonData.data.token);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VyOSIsImlhdCI6MTczNDc0NTcxNCwiZXhwIjoxNzM0NzU2NTE0fQ.tLyJvfREy6anPHfd4p6K0Zn69BnSKa8FC2EPh8cddzE",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://13.239.139.158/games"
+					},
+					"response": [
+						{
+							"name": "Req TOKEN",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VyOSIsImlhdCI6MTczNDc0NTcxNCwiZXhwIjoxNzM0NzU2NTE0fQ.tLyJvfREy6anPHfd4p6K0Zn69BnSKa8FC2EPh8cddzE",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": "http://13.239.139.158/games"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "117"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"75-SiiTh/Rvo99hrLhcfL6aIwT4v3k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 25 Dec 2024 07:28:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Room created successfully\",\n    \"data\": {\n        \"id\": 297,\n        \"token\": \"5mjlpt\",\n        \"status\": \"wait\",\n        \"creator\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Start Room",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://13.239.139.158/games/{{game_token}}/start"
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": "http://localhost:3000/games/6n844l/start"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-CeEuXAHssAYWCW/1WB0Ft4fMB9o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 02:16:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Room started successfully\",\n    \"data\": {\n        \"roomId\": 12,\n        \"status\": \"active\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Stop Room",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"result\": \"win\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://13.239.139.158/games/{{game_token}}/stop"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"result\": \"win\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/games/6n844l/stop"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "424"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a8-Bket8s0cwZFnPx3RmPcSfwf4Zzs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 03:51:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Room finished successfully\",\n    \"data\": {\n        \"roomId\": \"6n844l\",\n        \"rounds\": [\n            {\n                \"round\": 1,\n                \"player_1_id\": 1,\n                \"player_1_move\": \"rock\",\n                \"player_2_id\": 5,\n                \"player_2_move\": \"paper\",\n                \"result\": \"player_2\"\n            },\n            {\n                \"round\": 2,\n                \"player_1_id\": 1,\n                \"player_1_move\": \"rock\",\n                \"player_2_id\": 5,\n                \"player_2_move\": \"scissors\",\n                \"result\": \"player_1\"\n            },\n            {\n                \"round\": 3,\n                \"player_1_id\": 1,\n                \"player_1_move\": \"rock\",\n                \"player_2_id\": 5,\n                \"player_2_move\": \"rock\",\n                \"result\": \"draw\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Join Room",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjcsInVzZXJuYW1lIjoicGxheWVyIiwiaWF0IjoxNzM1MzYzNTAzLCJleHAiOjE3MzUzNzQzMDN9.rMMinkTllwcWKJFJ3bcL45u3BZIgREkxWbONcUffhH4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://13.239.139.158/games/bok9fs/join"
+					},
+					"response": [
+						{
+							"name": "Secceed",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjcsInVzZXJuYW1lIjoicGxheWVyIiwiaWF0IjoxNzM1MzYzNTAzLCJleHAiOjE3MzUzNzQzMDN9.rMMinkTllwcWKJFJ3bcL45u3BZIgREkxWbONcUffhH4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://13.239.139.158/games/bok9fs/join"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "171"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ab-MwYLA/Yg4vr/nGxWezGZ0K8fk/4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Dec 2024 05:29:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Joined room successfully\",\n    \"data\": {\n        \"token\": \"bok9fs\",\n        \"player_1_id\": 67,\n        \"player_2_id\": 67,\n        \"player_1_username\": \"player\",\n        \"player_2_username\": \"player\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
