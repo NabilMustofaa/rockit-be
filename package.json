@@ -11,13 +11,15 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.4.7",
+    "expo": "^52.0.23",
     "express": "~4.16.1",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "pg": "^8.13.1",
     "pusher": "^5.2.0",
-    "react-native-dotenv": "^3.4.11"
+    "react-native-dotenv": "^3.4.11",
+    "expo-build-properties": "~0.13.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
